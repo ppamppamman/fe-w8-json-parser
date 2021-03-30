@@ -1,5 +1,6 @@
 class Node {
-  constructor(value){
+  constructor(type, value){
+    this.type = type;
     this.data = value;
   }
 }

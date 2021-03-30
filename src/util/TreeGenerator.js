@@ -6,7 +6,7 @@ const generate = (tokens) => {
   const tree = new ParseTree();
 
   tokens.forEach(({type, value}) => {
-    const node = new Node(value);
+    const node = new Node(type, value);
     
     if (value === "{" || value === "[" ) {
       const branch = new Branch();
@@ -19,7 +19,6 @@ const generate = (tokens) => {
     } else if (value === "}" || value === "]") {
       tree.getCurrent().setLeafNode(node);
       tree.setCurrent(tree.getCurrent().getParentBranch());
-      // tree.current = tree.current.getParentBranch();
     } else {
       tree.getCurrent().setLeafNode(node);
     }

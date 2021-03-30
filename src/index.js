@@ -20,24 +20,19 @@ const lexicalizedTokens = lexicalize(tokenArray);
 
 const lexicalizedTree = generate(lexicalizedTokens);
 
+
+
 const parsing = (me) => {
-  
+
+  if (me.type === "Separator" && me.data === "[") {}
+
   if (me.constructor.name === "Branch") {
-    if (me.getLeafNodes().length !== 0) {
-      me.getLeafNodes().forEach((node) => {
-        parsing(node)
-      })
-    }
+    me.getLeafNodes().forEach((node) => {
+      parsing(node)
+    })
   } else {
     console.log(me);
+    return me;
   }
 }
 parsing(lexicalizedTree.getRoot());
-
-// const util = require('util');
-// console.log(util.inspect(parsedTree, false, null, true));
-// console.log(lexerTree.getRoot())
-// console.log(parsedTree.getRoot().getLeafNodes().length)
-// lexerTree.getRoot().getLeafNodes().forEach((node) => {
-//   // console.log(node)
-// })
