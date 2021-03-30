@@ -1,5 +1,3 @@
-const util = require('util');
-
 const ParseTree = require('./parseTree.js');
 const Branch = require('./branch.js');
 const Node = require('./node.js');
@@ -7,22 +5,23 @@ const Node = require('./node.js');
 const generate = (tokens) => {
   const tree = new ParseTree();
 
-  tokens.forEach((each) => {
-    const node = new Node(each);
+  tokens.forEach(({type, value}) => {
+    const node = new Node(value);
     
-    if (each === "{" || each === "[" ) {
+    if (value === "{" || value === "[" ) {
       const branch = new Branch();
       branch.setLeafNode(node);
-      tree.current.setLeafNode(branch);
+      tree.getCurrent().setLeafNode(branch);
       
-      const parentBranch = tree.current;
-      tree.current = branch;
-      tree.current.setParentBranch(parentBranch);
-    } else if (each === "}" || each === "]") {
-      tree.current.setLeafNode(node);
-      tree.current = tree.current.getParentBranch();
+      const parentBranch = tree.getCurrent()
+      tree.setCurrent(branch)
+      tree.getCurrent().setParentBranch(parentBranch);
+    } else if (value === "}" || value === "]") {
+      tree.getCurrent().setLeafNode(node);
+      tree.setCurrent(tree.getCurrent().getParentBranch());
+      // tree.current = tree.current.getParentBranch();
     } else {
-      tree.current.setLeafNode(node);
+      tree.getCurrent().setLeafNode(node);
     }
   
   })

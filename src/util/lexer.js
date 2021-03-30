@@ -33,7 +33,7 @@ const classifyToken = (token) => {
   } else if (isSeparator(token)) {
     return { type: "Separator", value: token };
   } else if (isNumber(token)) {
-    return { type: "Number", value: token };
+    return { type: "Number", value: Number(token) };
   } else if (isPrimitive(token)) {
     return classifyPrimitive(token);
   } else {
