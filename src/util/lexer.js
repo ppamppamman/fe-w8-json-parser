@@ -1,5 +1,3 @@
-const tokenArray = require('./tokenizer.js');
-
 const isSeparator = (char) => {
   return ["[", "]", ",", "{", "}", ":"].includes(char);
 }
@@ -43,7 +41,7 @@ const classifyToken = (token) => {
   }
 };
 
-const lexer = (tokenArray) => {
+const lexicalize = (tokenArray) => {
   const lexerArray = tokenArray.map((token) => {
     return classifyToken(token);
   });
@@ -51,6 +49,4 @@ const lexer = (tokenArray) => {
   return lexerArray;
 };
 
-const lexerizedTokenArray = lexer(tokenArray);
-
-module.exports = lexerizedTokenArray;
+module.exports = lexicalize;

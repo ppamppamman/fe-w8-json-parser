@@ -1,12 +1,12 @@
-function isSeparator(char) {
+const isSeparator = (char) => {
   return ["[", "]", ",", "{", "}", ":"].includes(char);
 }
 
-function isQuote(char) {
+const isQuote = (char) => {
   return ["'", '"'].includes(char);
 }
 
-function tokenize(splitData) {
+const tokenize = (splitData) => {
   let stack = [];
   let tokenStack = [];
   let quoteStack = [];
@@ -29,10 +29,4 @@ function tokenize(splitData) {
   return tokenStack;
 }
 
-const data1 = `["la3", [null, false, ["11", [112233], { easy: ["hello", { a: "a" }, "world"] }, 112], 55, "99"], 
-  { a: "str", b: [912, [5656, 33], { key: "innervalue", newkeys: [1, 2, 3, 4, 5] }] }, true]`;
-const splitData = data1.replace(/(\r\n\t|\n|\r\t)|\s/g, "");
-
-const tokenArray = tokenize(splitData);
-
-module.exports = tokenArray;
+module.exports = tokenize;

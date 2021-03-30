@@ -1,4 +1,4 @@
-const Branch = require('./Branch');
+const Branch = require('./branch');
 
 class ParseTree {
   constructor(){
