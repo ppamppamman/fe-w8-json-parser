@@ -1,7 +1,8 @@
 const util = require('util');
-const ParseTree = require('./util/ParseTree.js');
-const Branch = require('./util/Branch.js');
-const Node = require('./util/Node.js');
+
+const ParseTree = require('./ParseTree.js');
+const Branch = require('./Branch.js');
+const Node = require('./Node.js');
 
 const tree = new ParseTree();
 
