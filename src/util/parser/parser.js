@@ -1,12 +1,9 @@
 const isSeparatorArray = (node) => {
-  return node.getType() === "Separator-array-object" 
+  return node.getType() === "Separator-array-object" && node.getData() === "[" 
 }
 
 const isSeparatorObject = (node) => {
-  return node.getType() === "Separator-array-object"
-}
-const isOpenable = (node) => {
-  return node.getData() === "[" || node.getData() === "{";
+  return node.getType() === "Separator-array-object" && node.getData() === "{";
 }
 
 const isNotSeparator = (node) => {
@@ -18,9 +15,9 @@ const isObjectKey = (node) => {
 }
 
 const dataInitializer = (node) => {
-  if (isSeparatorArray(node) && isOpenable(node)) 
+  if (isSeparatorArray(node)) 
     return { target: [], targetType: "Array" }
-  else if (isSeparatorObject(node) && isOpenable(node)) 
+  else if (isSeparatorObject(node)) 
     return { target: {}, targetType: "Object"}
   else 
     return false;

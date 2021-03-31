@@ -14,6 +14,7 @@ const data = `
   true  
 ]
 `;
+
 const splitData = data.replace(/(\r\n\t|\n|\r\t)|\s/g, "");
 const tokenArray = tokenize(splitData);
 const lexicalizedTokens = lexicalize(tokenArray);
