@@ -1,4 +1,4 @@
-const Branch = require('./Branch');
+const Branch = require('./branch');
 
 class ParseTree {
   constructor(){
@@ -7,6 +7,15 @@ class ParseTree {
   }
   setRoot(branch) {
     this.root = branch;
+  }
+  getRoot() {
+    return this.root;
+  }
+  getCurrent() {
+    return this.current;
+  }
+  setCurrent(current) {
+    this.current = current;
   }
 }
 

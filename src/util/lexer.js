@@ -1,7 +1,12 @@
-const tokenArray = require('./tokenizer.js');
+const isChildSeparator = (char) => {
+  return "," === char;
+}
+const isKeyValueSeparator = (char) => {
+  return ":" === char;
+}
 
-const isSeparator = (char) => {
-  return ["[", "]", ",", "{", "}", ":"].includes(char);
+const isArrayObjectSeparator = (char) => {
+  return ["[", "]", "{", "}"].includes(char);
 }
 
 const isString = (token) => {
@@ -32,18 +37,27 @@ const classifyPrimitive = (string) => {
 const classifyToken = (token) => {
   if (isString(token)) {
     return { type: "String", value: token };
-  } else if (isSeparator(token)) {
-    return { type: "Separator", value: token };
-  } else if (isNumber(token)) {
-    return { type: "Number", value: token };
-  } else if (isPrimitive(token)) {
+  } else if (isChildSeparator(token)) {
+    return { type: "Separator-child", value: token };
+  }
+  else if (isKeyValueSeparator(token)) {
+    return { type: "Separator-key-value", value: token };
+  }
+  else if (isArrayObjectSeparator(token)) {
+    return { type: "Separator-array-object", value: token };
+  }
+  else if (isNumber(token)) {
+    return { type: "Number", value: Number(token) };
+  } 
+  else if (isPrimitive(token)) {
     return classifyPrimitive(token);
-  } else {
+  } 
+  else {
     return { type: "Object Key", value: token };
   }
 };
 
-const lexer = (tokenArray) => {
+const lexicalize = (tokenArray) => {
   const lexerArray = tokenArray.map((token) => {
     return classifyToken(token);
   });
@@ -51,6 +65,4 @@ const lexer = (tokenArray) => {
   return lexerArray;
 };
 
-const lexerizedTokenArray = lexer(tokenArray);
-
-module.exports = lexerizedTokenArray;
+module.exports = lexicalize;
