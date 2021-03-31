@@ -1,4 +1,4 @@
-const ParseTree = require('./parseTree.js');
+const ParseTree = require('./parse-tree.js');
 const Branch = require('./branch.js');
 const Node = require('./node.js');
 
@@ -16,7 +16,7 @@ const generate = (tokens) => {
       const parentBranch = tree.getCurrent()
       branch.setParentBranch(parentBranch);
       tree.setCurrent(branch);
-      // tree.getCurrent().setParentBranch(parentBranch);
+
     } else if (value === "}" || value === "]") {
       tree.getCurrent().setLeafNode(node);
       tree.setCurrent(tree.getCurrent().getParentBranch());
@@ -30,4 +30,4 @@ const generate = (tokens) => {
 }
 
 
-module.exports = generate ;
+module.exports = generate;

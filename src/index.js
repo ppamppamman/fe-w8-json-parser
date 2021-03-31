@@ -1,9 +1,7 @@
-const tokenize = require('./util/tokenizer.js');
-const lexicalize = require('./util/lexer.js');
-const generate = require('./util/treeGenerator.js');
-const parsing = require('./util/parser.js')
-
-const util = require('util')
+const tokenize = require('./util/tokenizer/tokenizer.js');
+const lexicalize = require('./util/lexer/lexer.js');
+const generate = require('./util/parseTreeGenerator/generator.js');
+const parsing = require('./util/parser/parser.js');
 
 const data = `
 [
