@@ -14,8 +14,9 @@ const generate = (tokens) => {
       tree.getCurrent().setLeafNode(branch);
       
       const parentBranch = tree.getCurrent()
-      tree.setCurrent(branch)
-      tree.getCurrent().setParentBranch(parentBranch);
+      branch.setParentBranch(parentBranch);
+      tree.setCurrent(branch);
+      // tree.getCurrent().setParentBranch(parentBranch);
     } else if (value === "}" || value === "]") {
       tree.getCurrent().setLeafNode(node);
       tree.setCurrent(tree.getCurrent().getParentBranch());
