@@ -1,5 +1,6 @@
 import JsonInputContainer from "../src/Components/JsonInput/JsonInputContainer.js";
 import JsonOutputContainer from "../src/Components/JsonOutput/JsonOutputContainer.js";
+import "./app.scss";
 
 class App {
   constructor({ $target }) {

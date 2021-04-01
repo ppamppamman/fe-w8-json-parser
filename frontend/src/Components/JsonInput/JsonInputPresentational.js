@@ -1,14 +1,11 @@
 class JsonInputPresentational {
   constructor({ $target }) {
-    //
     this.init({ $target });
   }
   init({ $target }) {
-    //
     this.render({ $target });
   }
   render({ $target }) {
-    //
     const $inputSection =
       /*html*/
       `<section class="json-data__section">
