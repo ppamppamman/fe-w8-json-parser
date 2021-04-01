@@ -45,5 +45,7 @@ const webpackConfig = {
     host: "localhost",
     port: 3030,
   },
+
+  devtool: "cheap-module-source-map",
 };
 export default webpackConfig;
