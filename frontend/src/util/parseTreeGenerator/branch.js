@@ -25,4 +25,4 @@ class Branch {
   }
 }
 
-module.exports = Branch;
+export default Branch;

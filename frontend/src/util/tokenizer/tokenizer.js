@@ -29,4 +29,4 @@ const tokenize = (splitData) => {
   return tokenStack;
 }
 
-module.exports = tokenize;
+export default tokenize;

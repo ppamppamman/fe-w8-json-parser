@@ -1,6 +1,6 @@
-const ParseTree = require('./parse-tree.js');
-const Branch = require('./branch.js');
-const Node = require('./node.js');
+import ParseTree from './parse-tree.js';
+import Branch from './branch.js';
+import Node from './node.js';
 
 const generate = (tokens) => {
   const tree = new ParseTree();
@@ -29,5 +29,4 @@ const generate = (tokens) => {
   return tree;
 }
 
-
-module.exports = generate;
+export default generate;

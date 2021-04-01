@@ -1,4 +1,4 @@
-const Branch = require('./branch.js');
+import Branch from './branch.js'; 
 
 class ParseTree {
   constructor(){
@@ -19,4 +19,4 @@ class ParseTree {
   }
 }
 
-module.exports = ParseTree;
+export default ParseTree;

@@ -1,7 +1,7 @@
-const tokenize = require('./util/tokenizer/tokenizer.js');
-const lexicalize = require('./util/lexer/lexer.js');
-const generate = require('./util/parseTreeGenerator/generator.js');
-const parsing = require('./util/parser/parser.js');
+import tokenize from './util/tokenizer/tokenizer.js'
+import lexicalize from './util/lexer/lexer.js'
+import generate from './util/parseTreeGenerator/generator.js'
+import parsing from './util/parser/parser.js'
 
 const data = `
 [

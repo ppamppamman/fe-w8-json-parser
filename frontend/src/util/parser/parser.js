@@ -16,51 +16,47 @@ const isObjectKey = (node) => {
 
 const dataInitializer = (node) => {
   if (isSeparatorArray(node)) 
-    return { target: [], targetType: "Array" }
+    return {type: "Array", child: [], value: "arrayObject" }
   else if (isSeparatorObject(node)) 
-    return { target: {}, targetType: "Object"}
+    return {type: "Object", child: [{value: {propKey: {}, propValue: {}, type:"obejctProperty" }}] }
   else 
     return false;
 }
 
 const parsing = (leafNodes) => {
   let target;
-  let targetType = null;
-  let objectKey = null;
-
+  
   leafNodes.map((node) => {
 
     if (node.constructor.name === "Node") { // 일반 토큰일 때
       
       const isInitializable = dataInitializer(node); // 클로저 데이터 활용을 위한 initialize
       if (isInitializable) {
-        target = isInitializable.target;
-        targetType = isInitializable.targetType;
+        target = isInitializable;
         return;
       }
       
       // initialize가 진행되어 토큰을 처리
-      switch (targetType) {
+      switch (target.type) {
         case "Array":
-          if (isNotSeparator(node)) target.push(node);
+          if (isNotSeparator(node)) target.child.push(node);
           break;
         case "Object":
           if (isObjectKey(node)) {
-            objectKey = node.getData();
-            target[objectKey] = null;
+            target.child[0].value.propKey = { value: node.getData(), type: "String" }
           } 
-          else if (isNotSeparator(node)) target[objectKey] = node.getData();
+          else if (isNotSeparator(node)) target.child[0].value.propValue = node
           break;
       }
     }
 
     else { // 재귀 진행 가능한 토큰일 때 // node.constructor.name === "Branch"
-      switch (targetType) {
+      switch (target.type) {
         case "Array":
-          target.push(parsing(node.getLeafNodes()));
+          target.child.push(parsing(node.getLeafNodes()));
           break;
         case "Object":
-          target[objectKey] = parsing(node.getLeafNodes());
+          target.child[0].value.propValue = parsing(node.getLeafNodes());
           break;
       }
     } 
@@ -69,4 +65,4 @@ const parsing = (leafNodes) => {
   return target;  
 }
 
-module.exports = parsing;
+export default parsing;

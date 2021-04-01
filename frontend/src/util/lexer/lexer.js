@@ -65,4 +65,4 @@ const lexicalize = (tokenArray) => {
   return lexerArray;
 };
 
-module.exports = lexicalize;
+export default lexicalize;
