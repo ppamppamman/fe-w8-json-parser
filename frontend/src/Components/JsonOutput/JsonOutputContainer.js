@@ -1,4 +1,5 @@
 import JsonOutputPresentational from "./JsonOutputPresentational.js";
+import "./jsonOutput.scss";
 
 class JsonOutputContainer {
   constructor({ $target }) {
@@ -15,15 +16,6 @@ class JsonOutputContainer {
     };
 
     this.setState({});
-
-    // 레거시
-    // const $parseBtn = document.querySelector(".json-data__button");
-    // const $jsonInput = document.querySelector(".json-data__input");
-    // $parseBtn.addEventListener("click", () => {
-    //   console.log($jsonInput.value);
-    //   //여기에서의 input값을 POST할때 body에 넣어야할것같습니다.
-    //   this.postString();
-    // });
   }
 
   setState(nextState) {
@@ -51,9 +43,7 @@ class JsonOutputContainer {
     // output
     this.postString(this.state.jsonInput).then((res) => {
       console.log(res);
-
       this.setState({ nextState: res });
-      // input에서 넘김=> 버튼누르면 input value가 post body로 넘어감 => 서버에서 파싱작업 해줌=> response오면 seState를 실행시켜서 리렌더링함
     });
   }
 
