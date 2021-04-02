@@ -18,12 +18,15 @@ div {
   border-radius: 10px;
   width: 30%;
   padding: 10px;
-  background-color: rgb(192, 77, 0);
+  background-color: #c04d00;
   color: white;
   margin: 10px 0;
   align-self: flex-end;
 }
 
 .json-data__section button:hover {
-  background-color: rgb(236, 152, 96);
+  background-color: #ec9860;
+}
+
+.json-data-parse__button {
 }
