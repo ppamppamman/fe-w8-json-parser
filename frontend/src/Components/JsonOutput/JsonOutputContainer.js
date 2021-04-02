@@ -1,6 +1,7 @@
 import JsonOutputPresentational from "./JsonOutputPresentational.js";
 import "./jsonOutput.scss";
 
+import API from "../../util/api/api.js";
 import analyze from "../../util/analyzer.js";
 
 class JsonOutputContainer {
@@ -23,14 +24,11 @@ class JsonOutputContainer {
   }
 
   setState(nextState) {
-    console.log(nextState);
     if (nextState.type === "JSON_INPUT") {
       this.state.jsonInput = nextState.value;
-      this.onParseButtonClicked(); // 보낸다.
     } else if (nextState.type === "PARSED_JSON_INPUT") {
       this.state.parsedJsonInput = nextState.value;
     }
-
     //여기서 target, 파싱된 데이터를 받아서 presentational에 렌더시 보내줄듯
     this.render();
   }
@@ -44,11 +42,7 @@ class JsonOutputContainer {
   }
 
   async onDataParseBtnClick() {
-    const response = await fetch("http://localhost:3333/data/").then(
-      async (res) => {
-        return await res.json();
-      }
-    );
+    const response = await API.get.JsonInputString();
     const parseTarget = response.data;
     this.setState({ type: "PARSED_JSON_INPUT", value: analyze(parseTarget) });
   }

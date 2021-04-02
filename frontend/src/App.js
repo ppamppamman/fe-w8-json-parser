@@ -20,25 +20,17 @@ class App {
   }
 
   render({ $target }) {
-    const $arrowSection =
-      /*html*/
-      `<section class="arrow__section">👉</section>`;
+    const $arrowSection = /*html*/ `
+      <section class="arrow__section">👉</section>
+    `;
 
-    this.JsonInputContainer = new JsonInputContainer({
-      $target,
-      onParseBunttonClick: this.handleParseBunttonClick.bind(this),
-    });
+    this.JsonInputContainer = new JsonInputContainer({ $target });
 
     $target.insertAdjacentHTML("beforeend", $arrowSection);
     //beforeend => element 안에 가장 마지막 child. 약간 append 하는걸까?
     this.JsonOutputContainer = new JsonOutputContainer({ $target });
   }
 
-  handleParseBunttonClick(value) {
-    console.log("app handle", value); // => json으로 넘겨줘야 하는 .
-    const nextState = { type: "JSON_INPUT", value: value };
-    this.JsonOutputContainer.setState(nextState);
-  }
 }
 
 export default App;

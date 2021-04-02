@@ -4,7 +4,6 @@ import generate from "./parseTreeGenerator/generator.js";
 import parsing from "./parser/parser.js";
 
 const analyze = (data) => {
-  console.log(data);
   const splitData = data.replace(/(\r\n\t|\n|\r\t)|\s/g, "");
   const tokenArray = tokenize(splitData);
   const lexicalizedTokens = lexicalize(tokenArray);

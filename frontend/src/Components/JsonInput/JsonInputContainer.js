@@ -1,3 +1,5 @@
+import API from "../../util/api/api.js";
+
 import JsonInputPresentational from "./JsonInputPresentational.js";
 import "./jsonInput.scss";
 
@@ -18,20 +20,11 @@ class JsonInputContainer {
     this.JsonInputPresentational = new JsonInputPresentational({
       $target: this.$target,
       onParseBunttonClick: this.postJsonInputString,
-      // onParseBunttonClick: this.onParseBunttonClick,
     });
   }
 
   async postJsonInputString(body) {
-    const response = await fetch("http://localhost:3333/data/", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data: body }),
-    });
-    return response.json();
+    API.post.JsonInputString(body);
   }
 }
 
