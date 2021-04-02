@@ -56,10 +56,11 @@ class JsonOutputContainer {
 
   async postString(body) {
     console.log(body);
-    const response = await fetch("http://localhost:3030/parser", {
+    const response = await fetch("http://localhost:3333/data", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      headers: { Accept: "application/json" },
+      body: body,
+      // body: JSON.stringify(body),
     });
     return response.json();
   }
