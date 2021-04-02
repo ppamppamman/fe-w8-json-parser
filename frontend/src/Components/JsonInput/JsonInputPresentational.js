@@ -12,13 +12,10 @@ class JsonInputPresentational {
 
     $dataAddBtn.addEventListener("click", () => {
       onParseBunttonClick($jsonInput.value);
-      // $dataParseBtn.style.display = "block";
       $dataParseBtn.disabled = false;
     });
 
-    $jsonInput.addEventListener("change", () => {
-      $dataParseBtn.disabled = true;
-    });
+    $jsonInput.addEventListener("change", () => {});
   }
 
   render({ $target }) {
@@ -27,7 +24,7 @@ class JsonInputPresentational {
         <h1>JSON 데이터를 추가해주세요</h1>
         <textarea class="json-data__input"></textarea>
         <button class="json-data-input__button">데이터 추가하기</button>
-        <button class="json-data-parse__button">데이터 분석하기</button>
+        <button disabled="disabled" class="json-data-parse__button">데이터 분석하기</button>
       </section>
     `;
 

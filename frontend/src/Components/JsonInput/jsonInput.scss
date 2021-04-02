@@ -24,9 +24,6 @@ div {
   align-self: flex-end;
 }
 
-.json-data__section button:hover {
-  background-color: #ec9860;
-}
-
-.json-data-parse__button {
+.json-data-parse__button:disabled {
+  background-color: rgb(136, 136, 136);
 }
