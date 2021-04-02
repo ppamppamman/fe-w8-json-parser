@@ -3,8 +3,11 @@ const fetch = require("node-fetch");
 
 const router = express.Router();
 
+const state = { jsonInput: null };
+
 router.get("/", (req, res) => {
-  return res.status(200).send({});
+  console.log(state);
+  return res.status(200).send({ data: state.jsonInput });
 });
 
 router.post("/", async (req, res) => {
@@ -15,6 +18,7 @@ router.post("/", async (req, res) => {
   // )
   console.log(req.body);
   // console.log(req.body)
+  state.jsonInput = req.body.data;
   return res.status(200).send({ response: req.body });
 });
 

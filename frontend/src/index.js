@@ -1,7 +1,7 @@
-import tokenize from './util/tokenizer/tokenizer.js'
-import lexicalize from './util/lexer/lexer.js'
-import generate from './util/parseTreeGenerator/generator.js'
-import parsing from './util/parser/parser.js'
+import tokenize from "./util/tokenizer/tokenizer.js";
+import lexicalize from "./util/lexer/lexer.js";
+import generate from "./util/parseTreeGenerator/generator.js";
+import parsing from "./util/parser/parser.js";
 
 const data = `
 [
@@ -21,6 +21,6 @@ const lexicalizedTokens = lexicalize(tokenArray);
 const lexicalizedTree = generate(lexicalizedTokens);
 
 const rootBranch = lexicalizedTree.getRoot().getLeafNodes()[0];
-const parsedResult = parsing(rootBranch.getLeafNodes())
+const parsedResult = parsing(rootBranch.getLeafNodes());
 
 console.log(JSON.stringify(parsedResult, null, "\t"));

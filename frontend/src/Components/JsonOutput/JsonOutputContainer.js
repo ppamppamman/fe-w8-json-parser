@@ -1,6 +1,8 @@
 import JsonOutputPresentational from "./JsonOutputPresentational.js";
 import "./jsonOutput.scss";
 
+import analyze from "../../util/analyzer.js";
+
 class JsonOutputContainer {
   constructor({ $target }) {
     // 돔
@@ -25,7 +27,6 @@ class JsonOutputContainer {
     if (nextState.type === "JSON_INPUT") {
       this.state.jsonInput = nextState.value;
       this.onParseButtonClicked(); // 보낸다.
-      
     } else if (nextState.type === "PARSED_JSON_INPUT") {
       this.state.parsedJsonInput = nextState.value;
     }
@@ -38,25 +39,18 @@ class JsonOutputContainer {
     this.JsonOutputPresentational = new JsonOutputPresentational({
       $target: this.$target,
       parsedJsonInput: this.state.parsedJsonInput,
+      onDataParseBtnClick: this.onDataParseBtnClick.bind(this),
     });
   }
 
-  onParseButtonClicked() {
-    // output
-    console.log("onParseButtonClicked", this.state.jsonInput)
-    this.postString(this.state.jsonInput).then((res) => {
-      console.log(res);
-      this.setState({ nextState: res });
-    });
-  }
-
-  async postString(body) {
-    const response = await fetch("http://localhost:3333/data/", {
-      method: "POST",
-      headers: { Accept: "application/json", 'Content-Type': 'application/json' },
-      body: JSON.stringify({ body }),
-    });
-    return response.json();
+  async onDataParseBtnClick() {
+    const response = await fetch("http://localhost:3333/data/").then(
+      async (res) => {
+        return await res.json();
+      }
+    );
+    const parseTarget = response.data;
+    this.setState({ type: "PARSED_JSON_INPUT", value: analyze(parseTarget) });
   }
 }
 

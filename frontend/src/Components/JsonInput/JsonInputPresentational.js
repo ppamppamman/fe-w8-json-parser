@@ -5,15 +5,19 @@ class JsonInputPresentational {
   init({ $target, onParseBunttonClick }) {
     this.render({ $target });
 
-    const $parseBtn = $target.querySelector(".json-data__button");
+    const $dataAddBtn = $target.querySelector(".json-data-input__button");
+    const $dataParseBtn = $target.querySelector(".json-data-parse__button");
+
     const $jsonInput = $target.querySelector(".json-data__input");
 
-    $parseBtn.addEventListener("click", () => {
-      // console.log($jsonInput.value);
-      //여기에서의 input값을 POST할때 body에 넣어야할것같습니다.
+    $dataAddBtn.addEventListener("click", () => {
+      onParseBunttonClick($jsonInput.value);
+      // $dataParseBtn.style.display = "block";
+      $dataParseBtn.disabled = false;
+    });
 
-      // this.postString(); // postString으로 함수를 전달
-      onParseBunttonClick($jsonInput.value); // postString으로 함수를 전달
+    $jsonInput.addEventListener("change", () => {
+      $dataParseBtn.disabled = true;
     });
   }
 
@@ -22,7 +26,8 @@ class JsonInputPresentational {
       <section class="json-data__section">
         <h1>JSON 데이터를 추가해주세요</h1>
         <textarea class="json-data__input"></textarea>
-        <button class="json-data__button">분석하기</button>
+        <button class="json-data-input__button">데이터 추가하기</button>
+        <button class="json-data-parse__button">데이터 분석하기</button>
       </section>
     `;
 
