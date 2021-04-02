@@ -1,4 +1,5 @@
 import JsonInputPresentational from "./JsonInputPresentational.js";
+import "./jsonInput.scss";
 
 class JsonInputContainer {
   constructor({ $target, onParseBunttonClick }) {

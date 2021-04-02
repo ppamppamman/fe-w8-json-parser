@@ -1,9 +1,13 @@
 import JsonOutputPresentational from "./JsonOutputPresentational.js";
+import "./jsonOutput.scss";
 
 class JsonOutputContainer {
   constructor({ $target }) {
     // 돔
-    this.$target = $target;
+    // this.$target = $target;
+    const $JsonOutputArea = document.createElement("div");
+    this.$target = $JsonOutputArea;
+    $target.append(this.$target);
 
     // 컴포넌트
     this.JsonOutputPresentational = null;
@@ -12,18 +16,11 @@ class JsonOutputContainer {
     this.state = {
       jsonInput: null, // 유저가 입력한 json처럼 생긴 스트링 => 버튼 클릭시 넘어옴
       parsedJsonInput: null, // this.state.jsonInput => 파서를 통해서 파싱하고 return 된 결과 값
+      // isFirstRender: true,
     };
 
+    // this.setState({ isFirstRender: this.state.isFirstRender });
     this.setState({});
-
-    // 레거시
-    // const $parseBtn = document.querySelector(".json-data__button");
-    // const $jsonInput = document.querySelector(".json-data__input");
-    // $parseBtn.addEventListener("click", () => {
-    //   console.log($jsonInput.value);
-    //   //여기에서의 input값을 POST할때 body에 넣어야할것같습니다.
-    //   this.postString();
-    // });
   }
 
   setState(nextState) {
@@ -31,6 +28,7 @@ class JsonOutputContainer {
     if (nextState.type === "JSON_INPUT") {
       this.state.jsonInput = nextState.value;
       this.onParseButtonClicked(); // 보낸다.
+      // this.state.isFirstRender = false;
     } else if (nextState.type === "PARSED_JSON_INPUT") {
       this.state.parsedJsonInput = nextState.value;
     }
@@ -44,6 +42,7 @@ class JsonOutputContainer {
     this.JsonOutputPresentational = new JsonOutputPresentational({
       $target: this.$target,
       parsedJsonInput: this.state.parsedJsonInput,
+      // isFirstRender: this.state.isFirstRender,
     });
   }
 
@@ -51,9 +50,7 @@ class JsonOutputContainer {
     // output
     this.postString(this.state.jsonInput).then((res) => {
       console.log(res);
-
       this.setState({ nextState: res });
-      // input에서 넘김=> 버튼누르면 input value가 post body로 넘어감 => 서버에서 파싱작업 해줌=> response오면 seState를 실행시켜서 리렌더링함
     });
   }
 
